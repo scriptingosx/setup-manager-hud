@@ -1,0 +1,35 @@
+name = "setup-manager-hud"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Static assets (Vite build output)
+[assets]
+directory = "./dist"
+
+# Durable Objects for real-time WebSocket
+[[durable_objects.bindings]]
+name = "DASHBOARD_ROOM"
+class_name = "DashboardRoom"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["DashboardRoom"]
+
+# KV for event persistence
+# REQUIRED: Create your KV namespace and uncomment the lines below.
+# Run: npx wrangler kv namespace create WEBHOOKS
+# Then paste the ID and uncomment:
+# [[kv_namespaces]]
+# binding = "WEBHOOKS"
+# id = "paste-your-namespace-id-here"
+# Uncomment for local dev with a separate preview namespace:
+# preview_id = ""
+
+# Cloudflare Access JWT validation (optional but recommended)
+# Set these to enable Access JWT verification on dashboard routes.
+# The webhook endpoint (/webhook) is always open for devices.
+# Uncomment and fill in after setting up Cloudflare Access:
+# [vars]
+# CF_ACCESS_AUD = "paste-your-audience-tag-here"
+# CF_ACCESS_TEAM_DOMAIN = "your-team.cloudflareaccess.com"

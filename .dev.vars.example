@@ -1,0 +1,3 @@
+# Copy this file to .dev.vars for local development
+# No secrets are required — the dashboard works without authentication locally
+# Authentication is handled by Cloudflare Access at the network edge (see README)
